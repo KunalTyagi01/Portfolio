@@ -393,7 +393,7 @@ export const personalProjects = [
       "Docker-containerised backend with Nginx reverse proxy, service health checks, and graceful shutdown for zero-downtime restarts.",
     ],
     description:
-      "Engineered a production-ready real-time chat platform with a focus on connection reliability, horizontal scalability, and secure message delivery — built with Socket.io, Node.js, Redis, TypeScript, and MongoDB, containerised with Docker Compose and proxied through Nginx.",
+      "Production-ready real-time chat platform built with Socket.io, Node.js, Redis, TypeScript, and MongoDB — horizontally scalable, JWT-secured, and containerised with Docker Compose.",
     tech: [
       "React",
       "TypeScript",

@@ -30,7 +30,7 @@ function ProjectModal({
     >
       <button
         aria-label="Close panel"
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default"
+        className="absolute inset-0 bg-black/50 cursor-default"
         onClick={onClose}
       />
       <motion.div
@@ -38,7 +38,7 @@ function ProjectModal({
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
-        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        transition={{ type: "tween", duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
@@ -223,7 +223,7 @@ function CompactCard({
       <h3 className="mb-2 font-display text-xl font-semibold text-white">
         {project.name}
       </h3>
-      <p className="flex-1 text-sm leading-6 text-slate-400 line-clamp-3">
+      <p className="text-sm leading-6 text-slate-400 line-clamp-3">
         {project.description}
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">

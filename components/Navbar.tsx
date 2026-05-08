@@ -51,31 +51,39 @@ export function Navbar() {
       "achievements",
       "contact",
     ];
+    let rafId: number | null = null;
     const handleScroll = () => {
-      // If scrolled to bottom of page, activate last section (contact)
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 80;
-      if (atBottom) {
-        setActiveSection("contact");
-        return;
-      }
-      let current = "home";
-      let closestTop = -Infinity;
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.getBoundingClientRect().top;
-          if (top <= 160 && top > closestTop) {
-            closestTop = top;
-            current = id;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const atBottom =
+          window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 80;
+        if (atBottom) {
+          setActiveSection("contact");
+          return;
+        }
+        let current = "home";
+        let closestTop = -Infinity;
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const top = el.getBoundingClientRect().top;
+            if (top <= 160 && top > closestTop) {
+              closestTop = top;
+              current = id;
+            }
           }
         }
-      }
-      setActiveSection(current);
+        setActiveSection(current);
+      });
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const toggleTheme = () => {

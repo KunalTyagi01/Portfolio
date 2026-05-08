@@ -5,17 +5,17 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap"
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space",
-  display: "swap"
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kunal-tyagi-portfolio.netlify.app"),
+  metadataBase: new URL("https://kunal-tyagi-dev.netlify.app"),
   title: "Kunal Tyagi | Full Stack Developer",
   description:
     "Premium developer portfolio for Kunal Tyagi, a Full Stack Developer specializing in React, TypeScript, Node.js, Golang, cloud-native SaaS, and multi-cloud network analytics.",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Node.js Developer",
     "Golang Developer",
     "Cloud Native SaaS",
-    "Multi Cloud Network Analytics"
+    "Multi Cloud Network Analytics",
   ],
   authors: [{ name: "Kunal Tyagi" }],
   creator: "Kunal Tyagi",
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     description:
       "React, Node.js and Golang developer building cloud-native SaaS, analytics dashboards, and high-performance APIs.",
     type: "website",
-    locale: "en_IN"
+    locale: "en_IN",
   },
   robots: {
     index: true,
-    follow: true
-  }
+    follow: true,
+  },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -58,7 +58,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
       </body>
