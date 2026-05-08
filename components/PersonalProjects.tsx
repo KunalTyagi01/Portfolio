@@ -34,7 +34,7 @@ function ProjectModal({
         onClick={onClose}
       />
       <motion.div
-        className="drawer-panel relative z-10 flex h-full w-full flex-col overflow-y-auto p-8 sm:w-[480px]"
+        className="drawer-panel relative z-10 flex h-full w-full flex-col overflow-y-auto p-5 sm:p-8 sm:w-[480px]"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
@@ -142,7 +142,7 @@ function FeaturedCard({
             </span>
           </div>
           <div>
-            <h3 className="mb-2 font-display text-3xl font-semibold text-white">
+            <h3 className="mb-2 font-display text-2xl font-semibold sm:text-3xl text-white">
               {project.name}
             </h3>
             <p className="max-w-xl text-base leading-7 text-slate-300">

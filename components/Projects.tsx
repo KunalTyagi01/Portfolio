@@ -35,7 +35,7 @@ function ProjectCard({
       <p className="accent-label mb-2 text-sm font-bold uppercase">
         {project.role}
       </p>
-      <h3 className="font-display text-2xl font-semibold text-white">
+      <h3 className="font-display text-xl font-semibold sm:text-2xl text-white">
         {project.name}
       </h3>
       <p className="mt-4 text-sm leading-6 text-slate-400">

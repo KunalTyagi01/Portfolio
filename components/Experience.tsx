@@ -6,7 +6,11 @@ import { Section } from "./Section";
 
 export function Experience() {
   return (
-    <Section id="experience" eyebrow="Timeline" title="Enterprise products, cloud platforms, and embedded delivery.">
+    <Section
+      id="experience"
+      eyebrow="Timeline"
+      title="Enterprise products, cloud platforms, and embedded delivery."
+    >
       <div className="relative">
         <div className="absolute bottom-0 left-4 top-0 hidden w-px bg-gradient-to-b from-mint via-cyan to-transparent md:block" />
         <div className="space-y-5">
@@ -27,8 +31,12 @@ export function Experience() {
                 <div className="glass rounded-3xl p-6">
                   <div className="flex flex-col gap-3 border-b border-white/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <h3 className="font-display text-2xl font-semibold text-white">{item.company}</h3>
-                      <p className="role-accent mt-1 font-semibold">{item.role}</p>
+                      <h3 className="font-display text-xl font-semibold sm:text-2xl text-white">
+                        {item.company}
+                      </h3>
+                      <p className="role-accent mt-1 font-semibold">
+                        {item.role}
+                      </p>
                     </div>
                     <div className="text-left text-sm text-slate-400 sm:text-right">
                       <p>{item.period}</p>
@@ -37,7 +45,10 @@ export function Experience() {
                   </div>
                   <ul className="mt-5 grid gap-3">
                     {item.highlights.map((highlight) => (
-                      <li key={highlight} className="flex gap-3 text-sm leading-6 text-slate-300">
+                      <li
+                        key={highlight}
+                        className="flex gap-3 text-sm leading-6 text-slate-300"
+                      >
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
                         {highlight}
                       </li>
