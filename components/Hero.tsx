@@ -38,11 +38,11 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="section-shell relative min-h-screen scroll-mt-24 pt-32 sm:pt-40 md:pt-20"
+      className="section-shell relative min-h-screen scroll-mt-24 pt-20 sm:pt-24 md:pt-20"
     >
       <div className="grid min-h-[calc(100vh-10rem)] items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div
-          className="-mt-32 sm:-mt-44"
+          className="lg:-mt-56"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -67,6 +67,42 @@ export function Hero() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             {profile.intro}
           </p>
+          <div className="mt-6 flex items-center gap-6">
+            <div className="text-center">
+              <p className="gradient-number font-display text-2xl font-bold">
+                2.3
+              </p>
+              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                Years Exp.
+              </p>
+            </div>
+            <div
+              aria-hidden
+              className="h-10 w-px"
+              style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
+            />
+            <div className="text-center">
+              <p className="gradient-number font-display text-2xl font-bold">
+                8.01
+              </p>
+              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                CGPA
+              </p>
+            </div>
+            <div
+              aria-hidden
+              className="h-10 w-px"
+              style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
+            />
+            <div className="text-center">
+              <p className="gradient-number font-display text-2xl font-bold">
+                10+
+              </p>
+              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                Projects
+              </p>
+            </div>
+          </div>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href="#projects"
@@ -98,7 +134,7 @@ export function Hero() {
           </div>
         </motion.div>
         <motion.div
-          className="glass relative overflow-hidden rounded-[2rem] p-6 sm:-mt-8"
+          className="hidden lg:block glass relative overflow-hidden rounded-[2rem] p-6 sm:-mt-8"
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}

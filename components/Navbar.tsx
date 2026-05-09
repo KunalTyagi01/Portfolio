@@ -43,12 +43,12 @@ export function Navbar() {
   useEffect(() => {
     const sectionIds = [
       "home",
-      "about",
       "skills",
       "experience",
       "projects",
       "personal-projects",
       "achievements",
+      "about",
       "contact",
     ];
     let rafId: number | null = null;
@@ -200,27 +200,36 @@ export function Navbar() {
       </aside>
 
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/72 backdrop-blur-xl md:hidden">
-        <nav className="section-shell flex h-20 items-center justify-between">
-          <a
-            href="#home"
-            className="focus-ring rounded-md font-display text-lg font-semibold text-white"
-          >
-            {profile.name}
-          </a>
-          <div className="flex items-center gap-3">
+        <nav className="section-shell flex h-14 items-center justify-between">
+          <div className="flex min-w-0 flex-1 items-center gap-1.5">
+            <a
+              href="#home"
+              className="focus-ring rounded-md font-display text-sm font-semibold text-white"
+            >
+              Kunal
+            </a>
+            <span className="text-white/40">·</span>
+            <span className="truncate text-sm font-semibold text-mint">
+              Full Stack Developer
+            </span>
+            <span className="ml-1 hidden shrink-0 rounded-full border border-mint/30 bg-mint/10 px-2 py-0.5 text-[9px] font-semibold text-mint sm:inline-flex">
+              ● Open
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
             <button
               type="button"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
               onClick={toggleTheme}
-              className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition hover:border-mint hover:text-mint"
+              className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition hover:border-mint hover:text-mint"
             >
-              {theme === "dark" ? <Sun size={19} /> : <Moon size={19} />}
+              {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </button>
             <button
               type="button"
               aria-label="Toggle menu"
               onClick={() => setOpen((value) => !value)}
-              className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white"
+              className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white"
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>

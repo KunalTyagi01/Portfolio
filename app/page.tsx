@@ -15,12 +15,12 @@ export default function Home() {
       <div className="noise" />
       <Navbar />
       <Hero />
-      <About />
       <Skills />
       <Experience />
       <Projects />
       <PersonalProjects />
       <Achievements />
+      <About />
       <Contact />
       <Footer />
     </main>

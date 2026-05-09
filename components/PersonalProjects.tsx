@@ -89,14 +89,16 @@ function ProjectModal({
           </ul>
         </div>
         <div className="mt-auto flex flex-wrap gap-3">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="drawer-github focus-ring inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition"
-          >
-            <FaGithub size={16} /> GitHub <ExternalLink size={14} />
-          </a>
+          {project.github !== "https://github.com/KunalTyagi01" && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              className="drawer-github focus-ring inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition"
+            >
+              <FaGithub size={16} /> GitHub <ExternalLink size={14} />
+            </a>
+          )}
           {typeof (project as Record<string, unknown>).live === "string" && (
             <a
               href={String((project as Record<string, unknown>).live)}
@@ -168,17 +170,19 @@ function FeaturedCard({
               }}
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-mint px-6 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
             >
-              View Case Study <ArrowRight size={18} />
+              View Details <ArrowRight size={18} />
             </button>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-mint hover:text-mint"
-            >
-              <FaGithub size={16} /> GitHub
-            </a>
+            {project.github !== "https://github.com/KunalTyagi01" && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-mint hover:text-mint"
+              >
+                <FaGithub size={16} /> GitHub
+              </a>
+            )}
           </div>
         </div>
         <div className="hidden flex-col justify-start lg:flex">

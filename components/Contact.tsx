@@ -13,7 +13,7 @@ export function Contact() {
           <p className="text-lg leading-8 text-slate-300">
             Seeking a challenging role as a Full-Stack Developer. Open to
             full-time opportunities, collaborations, and interesting engineering
-            problems worth solving — across Full-Stack, Frontend, Backend, MERN,
+            problems worth solving, across Full-Stack, Frontend, Backend, MERN,
             MEAN, Product Engineering, and Cloud-Native systems.
           </p>
           <div className="mt-8 space-y-4">
