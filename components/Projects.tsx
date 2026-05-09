@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight, X } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import { projects } from "@/data/portfolio";
 import { Section } from "./Section";
 

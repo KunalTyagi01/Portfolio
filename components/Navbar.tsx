@@ -34,7 +34,7 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("theme");
+    const savedTheme = globalThis.localStorage.getItem("theme");
     const initialTheme = savedTheme === "dark" ? "dark" : "light";
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
@@ -57,7 +57,7 @@ export function Navbar() {
       rafId = requestAnimationFrame(() => {
         rafId = null;
         const atBottom =
-          window.innerHeight + window.scrollY >=
+          globalThis.innerHeight + globalThis.scrollY >=
           document.body.offsetHeight - 80;
         if (atBottom) {
           setActiveSection("contact");
@@ -78,10 +78,10 @@ export function Navbar() {
         setActiveSection(current);
       });
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    globalThis.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      globalThis.removeEventListener("scroll", handleScroll);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
@@ -90,7 +90,7 @@ export function Navbar() {
     const nextTheme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
-    window.localStorage.setItem("theme", nextTheme);
+    globalThis.localStorage.setItem("theme", nextTheme);
   };
 
   const sidebarItems = [{ label: "Home", href: "#home" }, ...navItems];

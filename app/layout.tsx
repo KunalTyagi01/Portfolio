@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   const themeScript = `
     try {
-      if (window.localStorage.getItem("theme") === "dark") {
+      if (globalThis.localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
     } catch (_) {}
