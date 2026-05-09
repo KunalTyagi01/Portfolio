@@ -111,7 +111,7 @@ export function Hero() {
               View Projects <ArrowDown size={18} />
             </a>
             <a
-              href={`mailto:${profile.email}`}
+              href="#contact"
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan hover:text-cyan"
             >
               Start a Conversation
