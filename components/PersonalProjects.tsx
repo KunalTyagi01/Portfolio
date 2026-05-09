@@ -127,14 +127,14 @@ function FeaturedCard({
     | undefined;
   return (
     <motion.article
-      className="glass rounded-3xl p-8"
+      className="glass rounded-3xl p-5 sm:p-8"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55 }}
     >
-      <div className="grid gap-8 lg:grid-cols-[1fr_220px]">
-        <div className="flex flex-col gap-5">
+      <div className="grid gap-5 lg:grid-cols-[1fr_220px] lg:gap-8">
+        <div className="flex flex-col gap-4 sm:gap-5">
           <div className="flex items-center gap-3">
             <span className="badge-accent rounded-full border px-3 py-1 text-xs font-semibold">
               Personal
@@ -144,18 +144,20 @@ function FeaturedCard({
             </span>
           </div>
           <div>
-            <h3 className="mb-2 font-display text-2xl font-semibold sm:text-3xl text-white">
+            <h3 className="mb-2 font-display text-xl font-semibold text-white sm:text-3xl">
               {project.name}
             </h3>
-            <p className="max-w-xl text-base leading-7 text-slate-300">
+            <p className="line-clamp-4 max-w-xl text-sm leading-6 text-slate-300 sm:line-clamp-none sm:text-base sm:leading-7">
               {cardDesc ?? project.description}
             </p>
           </div>
           <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-            {(cardHighlights ?? project.highlights.slice(0, 4)).map((h) => (
+            {(cardHighlights ?? project.highlights.slice(0, 4)).map((h, highlightIndex) => (
               <li
                 key={h}
-                className="flex gap-3 text-sm leading-6 text-slate-300"
+              className={`gap-3 text-sm leading-6 text-slate-300 ${
+                  highlightIndex >= 1 ? "hidden sm:flex" : "flex"
+                }`}
               >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
                 {h}
@@ -209,10 +211,14 @@ function CompactCard({
   project,
   index,
   onClick,
-}: Readonly<{ project: Project; index: number; onClick: () => void }>) {
+}: Readonly<{
+  project: Project;
+  index: number;
+  onClick: () => void;
+}>) {
   return (
     <motion.article
-      className="glass flex cursor-pointer flex-col rounded-3xl p-6 transition hover:border-white/20"
+      className="glass flex min-w-[82%] snap-start cursor-pointer flex-col rounded-3xl p-5 transition hover:border-white/20 md:min-w-0 md:p-6"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -240,9 +246,17 @@ function CompactCard({
           </span>
         ))}
         {project.tech.length > 5 && (
-          <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs text-slate-500">
-            +{project.tech.length - 5}
-          </span>
+          <button
+            type="button"
+            aria-label={`View all technologies used in ${project.name}`}
+            onClick={(event) => {
+              event.stopPropagation();
+              onClick();
+            }}
+            className="rounded-full border border-cyan/20 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan transition hover:border-mint hover:text-mint"
+          >
+            +{project.tech.length - 5} more
+          </button>
         )}
       </div>
       <div className="mt-5 flex items-center justify-between">
@@ -283,7 +297,7 @@ export function PersonalProjects() {
             onClick={() => setSelected(featured)}
           />
         )}
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="no-scrollbar flex snap-x gap-4 overflow-x-auto overflow-y-hidden pb-2 md:grid md:overflow-visible md:pb-0 md:grid-cols-2 xl:grid-cols-3">
           {rest.map((project, index) => (
             <CompactCard
               key={project.name}

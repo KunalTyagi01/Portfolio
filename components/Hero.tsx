@@ -29,10 +29,6 @@ const focusAreas = [
     "Cloud, AI & Automation",
     "AWS, multi-cloud networking, Docker, Kubernetes, CI/CD, AI fluency",
   ],
-  [
-    "Quality & Architecture",
-    "Testing, RBAC, performance tuning, clean modular design",
-  ],
 ];
 
 export function Hero() {

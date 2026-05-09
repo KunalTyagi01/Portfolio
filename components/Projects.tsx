@@ -134,14 +134,26 @@ function ProjectCard({
         {project.description}
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
-        {project.tech.map((tech) => (
+        {project.tech.map((tech, techIndex) => (
           <span
             key={tech}
-            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300"
+            className={`rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300 ${
+              techIndex >= 7 ? "hidden sm:inline-flex" : ""
+            }`}
           >
             {tech}
           </span>
         ))}
+        {project.tech.length > 7 ? (
+          <button
+            type="button"
+            onClick={onOpen}
+            aria-label={`View all technologies used in ${project.name}`}
+            className="inline-flex items-center gap-1 rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1 text-xs font-semibold text-cyan transition hover:border-mint hover:text-mint sm:hidden"
+          >
+            +{project.tech.length - 7} more <ChevronRight size={12} />
+          </button>
+        ) : null}
       </div>
       <ul className="mt-6 space-y-3 border-t border-white/10 pt-5">
         {project.features.slice(0, MAX_BULLETS).map((feature) => (
@@ -160,7 +172,7 @@ function ProjectCard({
           onClick={onOpen}
           className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-cyan transition-colors hover:text-mint"
         >
-          <ChevronRight size={14} /> Show  more
+          <ChevronRight size={14} /> Show more
         </button>
       )}
       <div className="mt-auto pt-6">

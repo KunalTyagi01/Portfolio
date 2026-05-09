@@ -25,7 +25,7 @@ export const profile = {
   summary:
     "Full Stack Developer with over 2 years of experience building scalable cloud-native SaaS applications, high-performance APIs, analytics platforms, and full-stack product workflows across enterprise and personal projects.",
   intro:
-    "I build production-grade full-stack applications across React, Angular, Next.js, TypeScript, Node.js, Golang, Python, PHP, and Laravel, with a focus on dashboards, APIs, cloud workflows, automation, and maintainable product architecture.",
+    "I build production-grade full-stack applications across React, Angular, Node.js, Golang, etc with a focus on dashboards, APIs, cloud workflows, automation, and maintainable product architecture.",
   education:
     "B.Tech. Computer Science and Engineering, Lovely Professional University, 2020 - 2024",
   cgpa: "8.01 CGPA",

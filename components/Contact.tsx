@@ -81,10 +81,6 @@ export function Contact() {
               <h3 className="mt-3 font-display text-3xl font-semibold text-white">
                 Send a message directly from the portfolio.
               </h3>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
-                This form uses EmailJS for delivery. The mail app option is
-                still available as a fallback.
-              </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">

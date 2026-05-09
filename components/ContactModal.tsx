@@ -68,7 +68,7 @@ export function ContactModal() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/35 px-4 py-6 backdrop-blur-md"
+          className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/35 px-3 py-3 backdrop-blur-md sm:px-4 sm:py-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -83,40 +83,39 @@ export function ContactModal() {
             onClick={() => setOpen(false)}
           />
           <motion.div
-            className="contact-modal-surface relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-3xl p-6 sm:p-8"
+            className="contact-modal-surface relative max-h-[94dvh] w-full max-w-2xl overflow-y-auto rounded-3xl p-5 sm:max-h-[92vh] sm:p-8"
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.96 }}
             transition={{ duration: 0.24 }}
           >
-            <div className="mb-6 flex items-start justify-between gap-5">
+            <div className="mb-4 flex items-start justify-between gap-4 sm:mb-6 sm:gap-5">
               <div>
                 <p className="accent-label text-sm font-bold uppercase">
                   Contact
                 </p>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400">
-                  Fill this out and it will send through EmailJS. You can also
-                  open your mail app if you prefer sending from your own inbox.
+                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-400 sm:mt-3">
+                  You can also open your mail app if you prefer sending from your own inbox.
                 </p>
               </div>
               <button
                 type="button"
                 aria-label="Close"
                 onClick={() => setOpen(false)}
-                className="focus-ring inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-slate-300 transition hover:border-coral hover:text-coral"
+                className="focus-ring inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-slate-300 transition hover:border-coral hover:text-coral sm:h-11 sm:w-11"
               >
                 <X size={20} />
               </button>
             </div>
 
             <form onSubmit={handleSubmit}>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-slate-300">
                     Name
                   </span>
                   <input
-                    className="contact-field focus-ring w-full rounded-2xl px-4 py-3 text-white placeholder:text-slate-500"
+                    className="contact-field focus-ring w-full rounded-2xl px-4 py-2.5 text-white placeholder:text-slate-500 sm:py-3"
                     name="name"
                     placeholder="Your name"
                     required
@@ -127,7 +126,7 @@ export function ContactModal() {
                     Email
                   </span>
                   <input
-                    className="contact-field focus-ring w-full rounded-2xl px-4 py-3 text-white placeholder:text-slate-500"
+                    className="contact-field focus-ring w-full rounded-2xl px-4 py-2.5 text-white placeholder:text-slate-500 sm:py-3"
                     name="email"
                     type="email"
                     placeholder="you@example.com"
@@ -135,29 +134,29 @@ export function ContactModal() {
                   />
                 </label>
               </div>
-              <label className="mt-4 block">
+              <label className="mt-3 block sm:mt-4">
                 <span className="mb-2 block text-sm font-semibold text-slate-300">
                   Message
                 </span>
                 <textarea
-                  className="contact-field focus-ring min-h-40 w-full resize-none rounded-2xl px-4 py-3 text-white placeholder:text-slate-500"
+                  className="contact-field focus-ring min-h-28 w-full resize-none rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 sm:min-h-40"
                   name="message"
                   placeholder="Tell me about the role, project, or collaboration."
                   required
                 />
               </label>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-4 grid gap-3 sm:mt-6 sm:flex sm:flex-row">
                 <button
                   type="submit"
                   disabled={status === "sending" || emailConfigured === false}
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-mint px-6 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+                  className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-mint px-5 py-2.5 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white sm:px-6 sm:py-3"
                 >
                   <span>{status === "sending" ? "Sending..." : "Send Message"}</span>
                   <Send size={18} />
                 </button>
                 <a
                   href={directMailHref}
-                  className="mail-action focus-ring inline-flex items-center justify-center gap-3 rounded-full px-5 py-3 font-semibold transition hover:-translate-y-0.5"
+                  className="mail-action focus-ring inline-flex items-center justify-center gap-3 rounded-full px-5 py-2.5 font-semibold transition hover:-translate-y-0.5 sm:py-3"
                 >
                   <span
                     className="mail-action-icon inline-flex h-8 w-8 items-center justify-center rounded-full"

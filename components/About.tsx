@@ -35,7 +35,7 @@ export function About() {
             ))}
           </div>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="hidden gap-3 sm:grid sm:grid-cols-2">
           {competencies.map((item, index) => (
             <motion.div
               key={item}

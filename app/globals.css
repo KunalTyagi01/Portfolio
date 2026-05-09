@@ -20,6 +20,14 @@ html {
   scroll-behavior: smooth;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -95,6 +103,41 @@ html.dark .glass {
 html.dark .glass::before,
 html.dark .rainbow-panel::before {
   opacity: 0.7;
+}
+
+.skills-modal-backdrop {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(99, 91, 255, 0.12), transparent 18rem),
+    radial-gradient(circle at 80% 70%, rgba(73, 242, 194, 0.1), transparent 20rem),
+    rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(8px) saturate(1.04);
+  -webkit-backdrop-filter: blur(8px) saturate(1.04);
+}
+
+html.dark .skills-modal-backdrop {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(80, 199, 246, 0.1), transparent 18rem),
+    radial-gradient(circle at 82% 72%, rgba(73, 242, 194, 0.08), transparent 20rem),
+    rgba(2, 6, 23, 0.52);
+}
+
+.skills-modal-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(235, 247, 255, 0.55)),
+    rgba(255, 255, 255, 0.42);
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(22px) saturate(1.18);
+  -webkit-backdrop-filter: blur(22px) saturate(1.18);
+}
+
+html.dark .skills-modal-panel {
+  border-color: rgba(148, 163, 184, 0.18);
+  background:
+    linear-gradient(145deg, rgba(11, 24, 32, 0.9), rgba(9, 17, 24, 0.78)),
+    rgba(6, 16, 21, 0.72);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
 }
 
 .text-balance {
