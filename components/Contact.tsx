@@ -1,11 +1,41 @@
 "use client";
+import React from "react";
 
 import { Mail, Phone, Send } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { profile } from "@/data/portfolio";
 import { Section } from "./Section";
+import {
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  EMAILJS_PUBLIC_KEY,
+} from "@/data/emailjs.config";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
+  const [status, setStatus] = React.useState<null | "success" | "error">(null);
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus(null);
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        form,
+        EMAILJS_PUBLIC_KEY,
+      );
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.error("EmailJS error:", err);
+      }
+    }
+  };
+
   return (
     <Section id="contact" eyebrow="Contact" title="Let's Connect">
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
@@ -39,12 +69,7 @@ export function Contact() {
             </a>
           </div>
         </div>
-        <form
-          className="glass rounded-3xl p-6 sm:p-8"
-          action={`mailto:${profile.email}`}
-          method="post"
-          encType="text/plain"
-        >
+        <form className="glass rounded-3xl p-6 sm:p-8" onSubmit={handleSubmit}>
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
               <span className="mb-2 block text-sm font-medium text-slate-300">
@@ -87,6 +112,14 @@ export function Contact() {
           >
             Send Message <Send size={18} />
           </button>
+          {status === "success" && (
+            <p className="mt-4 text-green-400">Message sent successfully!</p>
+          )}
+          {status === "error" && (
+            <p className="mt-4 text-red-400">
+              Failed to send message. Please try again.
+            </p>
+          )}
         </form>
       </div>
     </Section>
