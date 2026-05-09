@@ -1,6 +1,7 @@
 import { About } from "@/components/About";
 import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
+import { ContactModal } from "@/components/ContactModal";
 import { Experience } from "@/components/Experience";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="relative z-10 md:pl-14 md:pt-12">
       <div className="noise" />
       <Navbar />
+      <ContactModal />
       <Hero />
       <Skills />
       <Experience />

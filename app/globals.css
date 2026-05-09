@@ -173,6 +173,143 @@ html.dark .hero-chip {
   box-shadow: 0 12px 32px rgba(124, 58, 237, 0.14);
 }
 
+.mail-action {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.5)) padding-box,
+    linear-gradient(90deg, rgba(124, 58, 237, 0.52), rgba(37, 99, 235, 0.42), rgba(20, 184, 166, 0.38)) border-box;
+  color: #1e1b4b;
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.08);
+}
+
+.mail-action:hover {
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.13);
+}
+
+html.dark .mail-action {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(6, 16, 21, 0.62)) padding-box,
+    linear-gradient(90deg, rgba(167, 139, 250, 0.55), rgba(96, 165, 250, 0.46), rgba(45, 212, 191, 0.4)) border-box;
+  color: #f8fafc;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+}
+
+.mail-action-icon {
+  background: rgba(124, 58, 237, 0.1);
+  color: #5b21b6;
+}
+
+html.dark .mail-action-icon {
+  background: rgba(167, 139, 250, 0.13);
+  color: #ddd6fe;
+}
+
+.contact-modal-surface {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.16);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(124, 58, 237, 0.11), transparent 18rem),
+    radial-gradient(circle at 88% 10%, rgba(20, 184, 166, 0.12), transparent 18rem),
+    radial-gradient(circle at 48% 100%, rgba(249, 115, 22, 0.08), transparent 20rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.78));
+  box-shadow:
+    0 34px 100px rgba(59, 130, 246, 0.2),
+    0 12px 36px rgba(124, 58, 237, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.contact-modal-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5 0%, #8b5cf6 28%, #ec4899 52%, #f97316 76%, #14b8a6 100%);
+  opacity: 0.95;
+}
+
+html.dark .contact-modal-surface {
+  border-color: rgba(148, 163, 184, 0.28);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(124, 58, 237, 0.18), transparent 18rem),
+    radial-gradient(circle at 86% 6%, rgba(45, 212, 191, 0.11), transparent 18rem),
+    linear-gradient(145deg, rgba(15, 28, 38, 0.98), rgba(8, 18, 27, 0.96));
+  box-shadow:
+    0 34px 100px rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.dark .contact-modal-surface::before {
+  opacity: 0.75;
+}
+
+.contact-field {
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .contact-field {
+  border-color: rgba(148, 163, 184, 0.26);
+  background: rgba(30, 43, 56, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.status-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.status-message-success {
+  border: 1px solid rgba(13, 148, 136, 0.22);
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.13), rgba(73, 242, 194, 0.08));
+  color: #0f766e;
+  box-shadow: 0 14px 34px rgba(20, 184, 166, 0.1);
+}
+
+.status-message-error {
+  border: 1px solid rgba(244, 63, 94, 0.24);
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(249, 115, 22, 0.08));
+  color: #be123c;
+  box-shadow: 0 14px 34px rgba(244, 63, 94, 0.08);
+}
+
+.status-message-warning {
+  border: 1px solid rgba(249, 115, 22, 0.24);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(251, 191, 36, 0.08));
+  color: #9a3412;
+  box-shadow: 0 14px 34px rgba(249, 115, 22, 0.08);
+}
+
+html.dark .status-message-success {
+  border-color: rgba(94, 234, 212, 0.24);
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.16), rgba(73, 242, 194, 0.08));
+  color: #99f6e4;
+}
+
+html.dark .status-message-error {
+  border-color: rgba(251, 113, 133, 0.28);
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(249, 115, 22, 0.08));
+  color: #fecdd3;
+}
+
+html.dark .status-message-warning {
+  border-color: rgba(251, 146, 60, 0.28);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(251, 191, 36, 0.08));
+  color: #fed7aa;
+}
+
 .issuer-aviatrix {
   border-color: rgba(234, 88, 12, 0.38);
   background: rgba(251, 146, 60, 0.14);

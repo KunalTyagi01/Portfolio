@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { openContactModal } from "@/components/ContactModal";
 import { metrics, profile } from "@/data/portfolio";
 
 const socialLinks = [
@@ -121,14 +122,26 @@ export function Hero() {
             {socialLinks.map((item) => {
               const Icon = item.icon;
               return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint"
-                  aria-label={item.label}
-                >
-                  <Icon size={19} />
-                </a>
+                item.label === "Email" ? (
+                  <button
+                    key={item.label}
+                    type="button"
+                    onClick={openContactModal}
+                    className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint"
+                    aria-label={item.label}
+                  >
+                    <Icon size={19} />
+                  </button>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint"
+                    aria-label={item.label}
+                  >
+                    <Icon size={19} />
+                  </a>
+                )
               );
             })}
           </div>

@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { openContactModal } from "@/components/ContactModal";
 import { navItems, profile } from "@/data/portfolio";
 
 const iconMap = {
@@ -186,8 +187,9 @@ export function Navbar() {
         </nav>
         <div className="mb-4 mt-auto flex flex-col items-center gap-4">
           <div className="w-8 border-t border-black/[0.07] dark:border-white/[0.07]" />
-          <a
-            href={`mailto:${profile.email}`}
+          <button
+            type="button"
+            onClick={openContactModal}
             className="group relative flex h-9 w-9 items-center justify-center rounded-xl bg-mint text-ink shadow-[0_8px_24px_rgba(73,242,194,0.28)] transition hover:-translate-y-1 hover:bg-white"
             aria-label="Hire Me"
           >
@@ -195,7 +197,7 @@ export function Navbar() {
             <span className="pointer-events-none absolute left-[3.8rem] whitespace-nowrap rounded-full bg-ink px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-card transition group-hover:translate-x-1 group-hover:opacity-100">
               Hire Me
             </span>
-          </a>
+          </button>
         </div>
       </aside>
 
@@ -254,13 +256,16 @@ export function Navbar() {
                     {item.label}
                   </a>
                 ))}
-                <a
-                  href={`mailto:${profile.email}`}
-                  onClick={() => setOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    openContactModal();
+                  }}
                   className="rounded-md px-3 py-3 font-semibold text-mint transition hover:bg-mint/10"
                 >
                   Hire Me
-                </a>
+                </button>
               </div>
             </motion.div>
           ) : null}
