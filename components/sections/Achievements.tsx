@@ -3,8 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Award, GraduationCap, HeartHandshake, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { IconBadge } from "@/components/ui/IconBadge";
+import { TechChip } from "@/components/ui/TechChip";
 import { certifications, extracurriculars, trainingCertificates } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 const issuerStyles: Record<string, string> = {
   Aviatrix: "issuer-aviatrix",
@@ -53,9 +55,7 @@ function CertificationModal({
         <div className="absolute inset-x-0 top-0 h-1 rounded-t-3xl bg-[linear-gradient(90deg,#635bff,#ff4d8d,#ff7a1a,#2dd4bf)]" />
         <div className="mb-5 flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-mint/10 text-mint">
-              <Award size={22} />
-            </div>
+            <IconBadge icon={Award} size={22} className="h-11 w-11" />
             <div>
               <p className="accent-label text-xs font-bold uppercase">
                 Certification
@@ -82,12 +82,12 @@ function CertificationModal({
         </div>
         <div className="flex max-h-[52vh] flex-wrap gap-2 overflow-y-auto pr-1">
           {cert.focus.map((item) => (
-            <span
+            <TechChip
               key={item}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-medium text-slate-300"
+              className="px-3 py-1.5 text-sm font-medium"
             >
               {item}
-            </span>
+            </TechChip>
           ))}
         </div>
       </motion.div>
@@ -104,9 +104,12 @@ export function Achievements() {
         {certifications.map((cert, index) => (
           <div key={cert.name} className="glass rounded-3xl p-4 sm:p-8">
             <div className="relative mb-3 pr-7 sm:mb-5 sm:flex sm:items-start sm:gap-3 sm:pr-0">
-              <div className="absolute right-0 top-0 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-mint/10 text-mint sm:static sm:mt-0.5 sm:h-12 sm:w-12 sm:rounded-2xl">
-                <Award size={17} className="sm:h-[21px] sm:w-[21px]" />
-              </div>
+              <IconBadge
+                icon={Award}
+                size={17}
+                className="absolute right-0 top-0 h-7 w-7 rounded-xl sm:static sm:mt-0.5 sm:h-12 sm:w-12 sm:rounded-2xl"
+                iconClassName="sm:h-[21px] sm:w-[21px]"
+              />
               <div className="min-w-0 flex-1">
                 <p className="accent-label text-[0.62rem] font-bold uppercase leading-4 ![letter-spacing:0.12em] sm:text-sm sm:![letter-spacing:0.28em]">
                   {index === 0 ? "Featured Certification" : "Certification"}
@@ -121,13 +124,13 @@ export function Achievements() {
             </div>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {cert.focus.map((item, itemIndex) => (
-                <span key={item} className={`rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[0.68rem] font-medium text-slate-300 sm:px-3 sm:py-1.5 sm:text-sm ${
+                <TechChip key={item} className={`px-2 py-0.5 text-[0.68rem] font-medium sm:px-3 sm:py-1.5 sm:text-sm ${
                   itemIndex >= MOBILE_CERT_FOCUS_LIMIT
                     ? "hidden sm:inline-flex"
                     : ""
                 }`}>
                   {item}
-                </span>
+                </TechChip>
               ))}
               {cert.focus.length > MOBILE_CERT_FOCUS_LIMIT ? (
                 <button
@@ -146,9 +149,11 @@ export function Achievements() {
       </div>
       <div className="glass rounded-3xl p-5 sm:p-8">
         <div className="mb-5 flex items-start gap-3 sm:mb-7 sm:items-center">
-          <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-coral/10 text-coral sm:h-12 sm:w-12">
-            <GraduationCap size={23} />
-          </div>
+          <IconBadge
+            icon={GraduationCap}
+            size={23}
+            className="h-11 w-11 bg-coral/10 text-coral sm:h-12 sm:w-12"
+          />
           <p className="max-w-2xl text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
             Certificate-backed training focused on programming fundamentals, databases, algorithms, and problem solving.
           </p>
@@ -169,12 +174,12 @@ export function Achievements() {
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
                 {training.focus.map((item) => (
-                  <span
+                  <TechChip
                     key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[0.68rem] font-medium text-slate-300 sm:px-2.5 sm:py-1 sm:text-xs"
+                    className="px-2 py-0.5 text-[0.68rem] font-medium sm:px-2.5 sm:py-1 sm:text-xs"
                   >
                     {item}
-                  </span>
+                  </TechChip>
                 ))}
               </div>
             </div>

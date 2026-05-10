@@ -1,12 +1,16 @@
 "use client";
 
-import { AlertTriangle, CheckCircle2, Mail, Phone, Send, XCircle } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { FaLinkedinIn } from "react-icons/fa6";
-import { openContactModal } from "@/components/ContactModal";
+import { openContactModal } from "@/components/contact/ContactModal";
+import {
+  EmailStatusMessage,
+  type EmailSendStatus,
+} from "@/components/contact/EmailStatus";
 import { profile } from "@/data/portfolio";
 import { isEmailConfigured, sendEmailForm } from "@/data/sendEmail";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 type FormSubmitEvent = {
   preventDefault: () => void;
@@ -14,9 +18,7 @@ type FormSubmitEvent = {
 };
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<EmailSendStatus>("idle");
   const emailConfigured = isEmailConfigured();
 
   const handleSubmit = (event: FormSubmitEvent) => {
@@ -150,24 +152,10 @@ export function Contact() {
                 <span>Open Mail App</span>
               </a>
             </div>
-            {emailConfigured === false ? (
-              <div className="status-message status-message-warning">
-                <AlertTriangle className="mt-0.5 shrink-0" size={18} />
-                <span>EmailJS env vars are missing. Use Open Mail App for now.</span>
-              </div>
-            ) : null}
-            {status === "success" ? (
-              <div className="status-message status-message-success">
-                <CheckCircle2 className="mt-0.5 shrink-0" size={18} />
-                <span>Message sent successfully. I will get back to you soon.</span>
-              </div>
-            ) : null}
-            {status === "error" ? (
-              <div className="status-message status-message-error">
-                <XCircle className="mt-0.5 shrink-0" size={18} />
-                <span>Message failed to send. Please try Open Mail App.</span>
-              </div>
-            ) : null}
+            <EmailStatusMessage
+              status={status}
+              emailConfigured={emailConfigured}
+            />
           </div>
         </form>
         </div>

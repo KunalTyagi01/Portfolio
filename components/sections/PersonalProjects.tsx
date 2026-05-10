@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ExternalLink, Star, X } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { TechChip } from "@/components/ui/TechChip";
 import { personalProjects } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 type Project = (typeof personalProjects)[0];
 const PROFILE_GITHUB = "https://github.com/KunalTyagi01";
@@ -232,12 +233,11 @@ function FeaturedCard({
           </p>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((tech) => (
-              <span
+              <TechChip
                 key={tech}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300"
               >
                 {tech}
-              </span>
+              </TechChip>
             ))}
           </div>
         </div>
@@ -277,12 +277,12 @@ function CompactCard({
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">
         {project.tech.slice(0, 5).map((tech) => (
-          <span
+          <TechChip
             key={tech}
-            className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs text-slate-300"
+            className="px-2.5 py-0.5"
           >
             {tech}
-          </span>
+          </TechChip>
         ))}
         {project.tech.length > 5 && (
           <button

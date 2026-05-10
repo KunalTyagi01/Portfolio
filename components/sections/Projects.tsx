@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
+import { IconBadge } from "@/components/ui/IconBadge";
+import { TechChip } from "@/components/ui/TechChip";
 import { projects } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 const MAX_BULLETS = 3;
 type Project = (typeof projects)[0];
@@ -44,9 +46,11 @@ function ProjectModal({
       >
         <div className="mb-6 flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-cyan/10 text-cyan">
-              <Icon size={24} />
-            </div>
+            <IconBadge
+              icon={Icon}
+              size={24}
+              className="h-12 w-12 bg-cyan/10 text-cyan"
+            />
             <div>
               <p className="accent-label text-xs font-bold uppercase">
                 {project.role}
@@ -117,9 +121,12 @@ function ProjectCard({
       transition={{ duration: 0.55, delay: index * 0.06 }}
     >
       <div className="mb-5 flex items-start justify-between gap-4 sm:mb-6">
-        <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan/10 text-cyan sm:h-12 sm:w-12">
-          <Icon size={21} className="sm:h-6 sm:w-6" />
-        </div>
+        <IconBadge
+          icon={Icon}
+          size={21}
+          className="h-10 w-10 bg-cyan/10 text-cyan sm:h-12 sm:w-12"
+          iconClassName="sm:h-6 sm:w-6"
+        />
         <span className="badge-accent rounded-full border px-3 py-1 text-xs font-semibold">
           Client Project
         </span>
@@ -135,14 +142,14 @@ function ProjectCard({
       </p>
       <div className="mt-4 flex flex-wrap gap-2 sm:mt-6">
         {project.tech.map((tech, techIndex) => (
-          <span
+          <TechChip
             key={tech}
-            className={`rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300 ${
+            className={`${
               techIndex >= 7 ? "hidden sm:inline-flex" : ""
             }`}
           >
             {tech}
-          </span>
+          </TechChip>
         ))}
         {project.tech.length > 7 ? (
           <button
@@ -201,9 +208,11 @@ function MobileProjectList({
             transition={{ duration: 0.45, delay: index * 0.05 }}
           >
             <div className="flex items-start gap-3">
-              <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-cyan/10 text-cyan">
-                <Icon size={20} />
-              </div>
+              <IconBadge
+                icon={Icon}
+                size={20}
+                className="h-10 w-10 bg-cyan/10 text-cyan"
+              />
               <div className="min-w-0 flex-1">
                 <div className="mb-1 flex items-start justify-between gap-3">
                   <p className="accent-label text-[0.62rem] font-bold uppercase ![letter-spacing:0.12em]">
@@ -223,12 +232,12 @@ function MobileProjectList({
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {project.tech.slice(0, 4).map((tech) => (
-                <span
+                <TechChip
                   key={tech}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs text-slate-300"
+                  className="px-2.5 py-0.5"
                 >
                   {tech}
-                </span>
+                </TechChip>
               ))}
               {project.tech.length > 4 ? (
                 <span className="rounded-full border border-cyan/20 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan">

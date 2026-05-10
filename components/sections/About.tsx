@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, GraduationCap } from "lucide-react";
 import { aboutHighlights, competencies, profile } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 export function About() {
   return (

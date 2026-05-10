@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { experience } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 const MOBILE_HIGHLIGHT_LIMIT = 4;
 type ExperienceItem = (typeof experience)[0];

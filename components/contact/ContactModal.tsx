@@ -1,8 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { AlertTriangle, CheckCircle2, Mail, Send, X, XCircle } from "lucide-react";
+import { Mail, Send, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import {
+  EmailStatusMessage,
+  type EmailSendStatus,
+} from "@/components/contact/EmailStatus";
 import { profile } from "@/data/portfolio";
 import { isEmailConfigured, sendEmailForm } from "@/data/sendEmail";
 
@@ -19,9 +23,7 @@ export function openContactModal() {
 
 export function ContactModal() {
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<EmailSendStatus>("idle");
   const emailConfigured = isEmailConfigured();
 
   useEffect(() => {
@@ -176,24 +178,11 @@ export function ContactModal() {
                   <span>Open Mail App</span>
                 </a>
               </div>
-              {emailConfigured === false ? (
-                <div className="status-message status-message-warning mt-4">
-                  <AlertTriangle className="mt-0.5 shrink-0" size={18} />
-                  <span>EmailJS env vars are missing. Use Open Mail App for now.</span>
-                </div>
-              ) : null}
-              {status === "success" ? (
-                <div className="status-message status-message-success mt-4">
-                  <CheckCircle2 className="mt-0.5 shrink-0" size={18} />
-                  <span>Message sent successfully. I will get back to you soon.</span>
-                </div>
-              ) : null}
-              {status === "error" ? (
-                <div className="status-message status-message-error mt-4">
-                  <XCircle className="mt-0.5 shrink-0" size={18} />
-                  <span>Message failed to send. Please try Open Mail App.</span>
-                </div>
-              ) : null}
+              <EmailStatusMessage
+                status={status}
+                emailConfigured={emailConfigured}
+                className="mt-4"
+              />
             </form>
           </motion.div>
         </motion.div>

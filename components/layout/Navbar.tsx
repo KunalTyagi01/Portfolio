@@ -16,8 +16,9 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { openContactModal } from "@/components/ContactModal";
+import { openContactModal } from "@/components/contact/ContactModal";
 import { navItems, profile } from "@/data/portfolio";
+import { getSectionIdForNavLabel, scrollToHash } from "@/lib/navigation";
 
 const iconMap = {
   Home,
@@ -101,13 +102,8 @@ export function Navbar() {
 
   const navigateFromMobileMenu = (href: string) => {
     setOpen(false);
-    const targetId = href.replace("#", "");
     globalThis.setTimeout(() => {
-      document.getElementById(targetId)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      globalThis.history.replaceState(null, "", href);
+      scrollToHash(href);
     }, 80);
   };
 
@@ -143,16 +139,11 @@ export function Navbar() {
       <aside className="fixed bottom-0 left-0 top-0 z-50 hidden w-14 flex-col border-r border-black/[0.06] bg-[#f8fbff]/95 backdrop-blur-xl md:flex dark:border-white/[0.08] dark:bg-[#061015]">
         <a
           href="#home"
-          className="focus-ring mx-auto flex h-12 w-14 shrink-0 items-center justify-center font-display text-xs font-bold"
+          className="focus-ring mx-auto flex h-12 w-14 shrink-0 rotate-180 items-center justify-center font-display text-xs font-bold tracking-[0.15em] [writing-mode:vertical-rl]"
           aria-label={profile.name}
-          style={{
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-            letterSpacing: "0.15em",
-          }}
         >
-          <span style={{ color: "#0d9488" }}>K</span>
-          <span style={{ color: "#2563eb" }}>T</span>
+          <span className="text-teal-600">K</span>
+          <span className="text-blue-600">T</span>
         </a>
         <button
           type="button"
@@ -166,19 +157,8 @@ export function Navbar() {
           {sidebarItems.map((item) => {
             const Icon =
               iconMap[item.label as keyof typeof iconMap] ?? Sparkles;
-            const idForLabel: Record<string, string> = {
-              Home: "home",
-              About: "about",
-              Skills: "skills",
-              Experience: "experience",
-              Projects: "projects",
-              "Personal Projects": "personal-projects",
-              Certifications: "achievements",
-              Contact: "contact",
-            };
             const isActive =
-              activeSection ===
-                (idForLabel[item.label] ?? item.label.toLowerCase()) ||
+              activeSection === getSectionIdForNavLabel(item.label) ||
               (item.label === "Projects" &&
                 activeSection === "personal-projects");
             return (
@@ -293,19 +273,8 @@ export function Navbar() {
                   {mobileSidebarItems.map((item) => {
                     const Icon =
                       iconMap[item.label as keyof typeof iconMap] ?? Sparkles;
-                    const idForLabel: Record<string, string> = {
-                      Home: "home",
-                      About: "about",
-                      Skills: "skills",
-                      Experience: "experience",
-                      Projects: "projects",
-                      "Personal Projects": "personal-projects",
-                      Certifications: "achievements",
-                      Contact: "contact",
-                    };
                     const isActive =
-                      activeSection ===
-                        (idForLabel[item.label] ?? item.label.toLowerCase()) ||
+                      activeSection === getSectionIdForNavLabel(item.label) ||
                       (item.label === "Projects" &&
                         activeSection === "personal-projects");
                     return (

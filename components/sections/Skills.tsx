@@ -3,8 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { IconBadge } from "@/components/ui/IconBadge";
+import { TechChip } from "@/components/ui/TechChip";
 import { skillGroups } from "@/data/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/ui/Section";
 
 const MOBILE_SKILL_LIMIT = 5;
 type SkillGroup = (typeof skillGroups)[0];
@@ -49,9 +51,7 @@ function SkillsModal({
         <div className="absolute inset-x-0 top-0 h-1 rounded-t-3xl bg-[linear-gradient(90deg,#635bff,#ff4d8d,#ff7a1a,#2dd4bf)]" />
         <div className="mb-5 flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-mint/10 text-mint">
-              <Icon size={22} />
-            </div>
+            <IconBadge icon={Icon} size={22} className="h-11 w-11" />
             <div>
               <p className="accent-label text-xs font-bold uppercase">
                 Skill Group
@@ -75,12 +75,12 @@ function SkillsModal({
         </div>
         <div className="flex max-h-[54vh] flex-wrap gap-2 overflow-y-auto pr-1">
           {group.skills.map((skill) => (
-            <span
+            <TechChip
               key={skill}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-medium text-slate-300"
+              className="px-3 py-1.5 text-sm font-medium"
             >
               {skill}
-            </span>
+            </TechChip>
           ))}
         </div>
       </motion.div>
@@ -106,25 +106,28 @@ export function Skills() {
               transition={{ duration: 0.55, delay: index * 0.05 }}
             >
               <div className="mb-3 flex items-center gap-2.5 md:mb-5 md:gap-3">
-                <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-mint/10 text-mint md:h-12 md:w-12 md:rounded-2xl">
-                  <Icon size={17} className="md:h-[21px] md:w-[21px]" />
-                </div>
+                <IconBadge
+                  icon={Icon}
+                  size={17}
+                  className="h-8 w-8 rounded-xl md:h-12 md:w-12 md:rounded-2xl"
+                  iconClassName="md:h-[21px] md:w-[21px]"
+                />
                 <h3 className="font-display text-base font-semibold leading-5 text-white md:text-xl md:leading-7">
                   {group.title}
                 </h3>
               </div>
               <div className="flex flex-wrap gap-1.5 md:gap-2">
                 {group.skills.map((skill, skillIndex) => (
-                  <span
+                  <TechChip
                     key={skill}
-                    className={`rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[0.68rem] font-medium text-slate-300 transition hover:border-cyan/50 hover:text-white md:px-3 md:py-1.5 md:text-sm ${
+                    className={`px-2 py-0.5 text-[0.68rem] font-medium transition hover:border-cyan/50 hover:text-white md:px-3 md:py-1.5 md:text-sm ${
                       skillIndex >= MOBILE_SKILL_LIMIT
                         ? "hidden md:inline-flex"
                         : ""
                     }`}
                   >
                     {skill}
-                  </span>
+                  </TechChip>
                 ))}
                 {group.skills.length > MOBILE_SKILL_LIMIT ? (
                   <button

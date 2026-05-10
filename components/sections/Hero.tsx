@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { openContactModal } from "@/components/ContactModal";
+import { openContactModal } from "@/components/contact/ContactModal";
 import { metrics, profile } from "@/data/portfolio";
 
 const socialLinks = [
@@ -80,8 +80,7 @@ export function Hero() {
             </div>
             <div
               aria-hidden
-              className="h-8 w-px sm:h-10"
-              style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
+              className="h-8 w-px bg-slate-500/55 sm:h-10"
             />
             <div className="text-center">
               <p className="gradient-number font-display text-xl font-bold sm:text-2xl">
@@ -93,8 +92,7 @@ export function Hero() {
             </div>
             <div
               aria-hidden
-              className="h-8 w-px sm:h-10"
-              style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
+              className="h-8 w-px bg-slate-500/55 sm:h-10"
             />
             <div className="text-center">
               <p className="gradient-number font-display text-xl font-bold sm:text-2xl">

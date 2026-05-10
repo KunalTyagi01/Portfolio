@@ -1,14 +1,15 @@
-import { About } from "@/components/About";
-import { Achievements } from "@/components/Achievements";
-import { Contact } from "@/components/Contact";
-import { ContactModal } from "@/components/ContactModal";
-import { Experience } from "@/components/Experience";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
-import { Navbar } from "@/components/Navbar";
-import { PersonalProjects } from "@/components/PersonalProjects";
-import { Projects } from "@/components/Projects";
-import { Skills } from "@/components/Skills";
+import { ContactModal } from "@/components/contact";
+import { Footer, Navbar } from "@/components/layout";
+import {
+  About,
+  Achievements,
+  Contact,
+  Experience,
+  Hero,
+  PersonalProjects,
+  Projects,
+  Skills,
+} from "@/components/sections";
 
 export default function Home() {
   return (
