@@ -95,6 +95,21 @@ export function Navbar() {
   };
 
   const sidebarItems = [{ label: "Home", href: "#home" }, ...navItems];
+  const mobileSidebarItems = sidebarItems.filter(
+    (item) => item.label !== "Contact",
+  );
+
+  const navigateFromMobileMenu = (href: string) => {
+    setOpen(false);
+    const targetId = href.replace("#", "");
+    globalThis.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      globalThis.history.replaceState(null, "", href);
+    }, 80);
+  };
 
   return (
     <>
@@ -201,7 +216,7 @@ export function Navbar() {
         </div>
       </aside>
 
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/72 backdrop-blur-xl md:hidden">
+      <header className="fixed left-0 right-0 top-0 z-[60] border-b border-white/10 bg-ink/72 backdrop-blur-xl md:hidden">
         <nav className="section-shell flex h-14 items-center justify-between">
           <div className="flex min-w-0 flex-1 items-center gap-1.5">
             <a
@@ -237,40 +252,112 @@ export function Navbar() {
             </button>
           </div>
         </nav>
+      </header>
         <AnimatePresence>
           {open ? (
+            <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              className="fixed inset-0 z-50 bg-slate-950/28 backdrop-blur-[3px] md:hidden dark:bg-slate-950/45"
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
             <motion.div
-              className="border-t border-white/10 bg-ink/96 px-4 py-4"
+              className="fixed left-0 right-0 top-14 z-[70] max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t border-black/[0.06] bg-white/95 px-4 py-3 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl md:hidden dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,16,21,0.98),rgba(8,23,29,0.96))]"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <div className="mx-auto flex max-w-xl flex-col gap-2">
-                {sidebarItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-3 text-slate-200 transition hover:bg-white/5 hover:text-mint"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+              <div className="mx-auto flex max-w-xl flex-col gap-2.5">
+                <div className="rounded-2xl border border-black/[0.06] bg-gradient-to-br from-white to-cyan/10 p-3 shadow-[0_12px_30px_rgba(15,23,42,0.08)] dark:border-mint/15 dark:from-white/[0.08] dark:to-mint/[0.08] dark:shadow-[0_12px_30px_rgba(0,0,0,0.32)]">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="font-display text-base font-semibold text-slate-950 dark:text-white">
+                        {profile.name}
+                      </p>
+                      <p className="mt-0.5 text-xs font-semibold text-mint">
+                        {profile.title}
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[0.65rem] font-bold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span>Open</span>
+                    </span>
+                  </div>
+                </div>
+                <div className="grid gap-1.5">
+                  {mobileSidebarItems.map((item) => {
+                    const Icon =
+                      iconMap[item.label as keyof typeof iconMap] ?? Sparkles;
+                    const idForLabel: Record<string, string> = {
+                      Home: "home",
+                      About: "about",
+                      Skills: "skills",
+                      Experience: "experience",
+                      Projects: "projects",
+                      "Personal Projects": "personal-projects",
+                      Certifications: "achievements",
+                      Contact: "contact",
+                    };
+                    const isActive =
+                      activeSection ===
+                        (idForLabel[item.label] ?? item.label.toLowerCase()) ||
+                      (item.label === "Projects" &&
+                        activeSection === "personal-projects");
+                    return (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          navigateFromMobileMenu(item.href);
+                        }}
+                        className={`group flex items-center justify-between rounded-2xl border px-2.5 py-2 transition ${
+                          isActive
+                            ? "border-mint/45 bg-mint/15 text-slate-950 shadow-[0_10px_30px_rgba(73,242,194,0.14)] dark:bg-mint/12 dark:text-white dark:shadow-[0_10px_30px_rgba(73,242,194,0.1)]"
+                            : "border-black/[0.06] bg-white/50 text-slate-700 hover:border-mint/30 hover:bg-mint/10 hover:text-slate-950 dark:border-[#24404a] dark:bg-[#10242c] dark:text-slate-100 dark:hover:border-mint/40 dark:hover:bg-[#123833] dark:hover:text-white"
+                        }`}
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <span
+                            className={`inline-flex h-8 w-8 items-center justify-center rounded-xl ${
+                              isActive
+                                ? "bg-mint text-ink"
+                                : "bg-slate-100 text-slate-500 group-hover:bg-mint/15 group-hover:text-mint dark:bg-[#18323b] dark:text-slate-100 dark:group-hover:bg-mint/15 dark:group-hover:text-mint"
+                            }`}
+                          >
+                            <Icon size={16} />
+                          </span>
+                          <span className="text-[0.82rem] font-semibold">
+                            {item.label}
+                          </span>
+                        </span>
+                        {isActive ? (
+                          <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+                        ) : null}
+                      </a>
+                    );
+                  })}
+                </div>
                 <button
                   type="button"
                   onClick={() => {
                     setOpen(false);
                     openContactModal();
                   }}
-                  className="rounded-md px-3 py-3 font-semibold text-mint transition hover:bg-mint/10"
+                  className="focus-ring inline-flex items-center justify-center gap-2 rounded-2xl bg-mint px-4 py-2.5 text-sm font-semibold text-ink shadow-[0_14px_36px_rgba(73,242,194,0.24)] transition hover:-translate-y-0.5 hover:bg-white"
                 >
-                  Hire Me
+                  <User size={16} /> Hire Me
                 </button>
               </div>
             </motion.div>
+            </>
           ) : null}
         </AnimatePresence>
-      </header>
     </>
   );
 }

@@ -38,6 +38,14 @@ export function ContactModal() {
     };
   }, []);
 
+  useEffect(() => {
+    if (open === false) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const directMailHref = useMemo(
     () =>
       `mailto:${profile.email}?subject=${encodeURIComponent(
@@ -68,10 +76,11 @@ export function ContactModal() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/35 px-3 py-3 backdrop-blur-md sm:px-4 sm:py-6"
+          className="contact-modal-backdrop fixed inset-0 z-[100] grid place-items-center px-3 py-3 sm:px-4 sm:py-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.12, ease: "easeOut" }}
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-modal-title"
@@ -83,11 +92,11 @@ export function ContactModal() {
             onClick={() => setOpen(false)}
           />
           <motion.div
-            className="contact-modal-surface relative max-h-[94dvh] w-full max-w-2xl overflow-y-auto rounded-3xl p-5 sm:max-h-[92vh] sm:p-8"
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 18, scale: 0.96 }}
-            transition={{ duration: 0.24 }}
+            className="contact-modal-surface relative max-h-[94dvh] w-full max-w-2xl transform-gpu overflow-y-auto rounded-3xl p-5 will-change-transform sm:max-h-[92vh] sm:p-8"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mb-4 flex items-start justify-between gap-4 sm:mb-6 sm:gap-5">
               <div>

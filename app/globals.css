@@ -248,6 +248,22 @@ html.dark .mail-action-icon {
   color: #ddd6fe;
 }
 
+.contact-modal-backdrop {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(124, 58, 237, 0.14), transparent 18rem),
+    radial-gradient(circle at 82% 88%, rgba(20, 184, 166, 0.13), transparent 20rem),
+    rgba(15, 23, 42, 0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+html.dark .contact-modal-backdrop {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(124, 58, 237, 0.14), transparent 18rem),
+    radial-gradient(circle at 82% 88%, rgba(20, 184, 166, 0.1), transparent 20rem),
+    rgba(2, 6, 23, 0.56);
+}
+
 .contact-modal-surface {
   position: relative;
   overflow: hidden;
@@ -261,8 +277,9 @@ html.dark .mail-action-icon {
     0 34px 100px rgba(59, 130, 246, 0.2),
     0 12px 36px rgba(124, 58, 237, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0);
 }
 
 .contact-modal-surface::before {
