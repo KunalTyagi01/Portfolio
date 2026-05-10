@@ -26,7 +26,7 @@ function ProjectModal({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex justify-end"
+      className="fixed inset-0 z-[80] flex justify-end"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -38,7 +38,7 @@ function ProjectModal({
         onClick={onClose}
       />
       <motion.div
-        className="drawer-panel relative z-10 flex h-full w-full flex-col overflow-y-auto p-5 sm:w-[520px] sm:p-8"
+        className="drawer-panel relative z-[90] flex h-full w-full flex-col overflow-y-auto p-5 sm:w-[520px] sm:p-8"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
@@ -63,7 +63,7 @@ function ProjectModal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="drawer-close mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition"
+            className="drawer-close mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition z-[100]"
           >
             <X size={16} />
           </button>
@@ -144,9 +144,7 @@ function ProjectCard({
         {project.tech.map((tech, techIndex) => (
           <TechChip
             key={tech}
-            className={`${
-              techIndex >= 7 ? "hidden sm:inline-flex" : ""
-            }`}
+            className={`${techIndex >= 7 ? "hidden sm:inline-flex" : ""}`}
           >
             {tech}
           </TechChip>
@@ -232,17 +230,19 @@ function MobileProjectList({
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {project.tech.slice(0, 4).map((tech) => (
-                <TechChip
-                  key={tech}
-                  className="px-2.5 py-0.5"
-                >
+                <TechChip key={tech} className="px-2.5 py-0.5">
                   {tech}
                 </TechChip>
               ))}
               {project.tech.length > 4 ? (
-                <span className="rounded-full border border-cyan/20 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan">
+                <button
+                  type="button"
+                  onClick={() => onOpen(project)}
+                  aria-label={`View all technologies used in ${project.name}`}
+                  className="rounded-full border border-cyan/20 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan transition hover:border-mint hover:text-mint"
+                >
                   +{project.tech.length - 4}
-                </span>
+                </button>
               ) : null}
             </div>
             <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">

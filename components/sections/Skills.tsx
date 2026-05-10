@@ -26,7 +26,7 @@ function SkillsModal({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+      className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-6"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -42,7 +42,7 @@ function SkillsModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="skills-modal-title"
-        className="skills-modal-panel relative z-10 w-full max-w-sm rounded-3xl p-5 shadow-2xl"
+        className="skills-modal-panel relative z-[90] w-full max-w-sm rounded-3xl p-5 shadow-2xl"
         initial={{ opacity: 0, y: 22, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 18, scale: 0.96 }}
@@ -68,17 +68,14 @@ function SkillsModal({
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="drawer-close inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition"
+            className="drawer-close inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition z-[100]"
           >
             <X size={16} />
           </button>
         </div>
         <div className="flex max-h-[54vh] flex-wrap gap-2 overflow-y-auto pr-1">
           {group.skills.map((skill) => (
-            <TechChip
-              key={skill}
-              className="px-3 py-1.5 text-sm font-medium"
-            >
+            <TechChip key={skill} className="px-3 py-1.5 text-sm font-medium">
               {skill}
             </TechChip>
           ))}
@@ -92,7 +89,11 @@ export function Skills() {
   const [selectedGroup, setSelectedGroup] = useState<SkillGroup | null>(null);
 
   return (
-    <Section id="skills" eyebrow="Skills" title="A stack tuned for full-stack products, APIs, cloud, and automation.">
+    <Section
+      id="skills"
+      eyebrow="Skills"
+      title="A stack tuned for full-stack products, APIs, cloud, and automation."
+    >
       <div className="grid grid-cols-2 gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-3">
         {skillGroups.map((group, index) => {
           const Icon = group.icon;

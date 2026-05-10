@@ -1,16 +1,26 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Award, GraduationCap, HeartHandshake, Sparkles, X } from "lucide-react";
+import {
+  Award,
+  GraduationCap,
+  HeartHandshake,
+  Sparkles,
+  X,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { TechChip } from "@/components/ui/TechChip";
-import { certifications, extracurriculars, trainingCertificates } from "@/data/portfolio";
+import {
+  certifications,
+  extracurriculars,
+  trainingCertificates,
+} from "@/data/portfolio";
 import { Section } from "@/components/ui/Section";
 
 const issuerStyles: Record<string, string> = {
   Aviatrix: "issuer-aviatrix",
-  Calyptus: "issuer-calyptus"
+  Calyptus: "issuer-calyptus",
 };
 
 const highlightIcons = [HeartHandshake, Sparkles];
@@ -30,7 +40,7 @@ function CertificationModal({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+      className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-6"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -46,7 +56,7 @@ function CertificationModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="certification-modal-title"
-        className="skills-modal-panel relative z-10 w-full max-w-sm rounded-3xl p-5 shadow-2xl"
+        className="skills-modal-panel relative z-[90] w-full max-w-sm rounded-3xl p-5 shadow-2xl"
         initial={{ opacity: 0, y: 22, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 18, scale: 0.96 }}
@@ -66,7 +76,9 @@ function CertificationModal({
               >
                 {cert.name}
               </h3>
-              <p className={`mt-2 inline-flex rounded-full border px-3 py-1 text-sm font-semibold ${issuerStyles[cert.issuer] ?? "border-cyan/25 bg-cyan/10 text-cyan"}`}>
+              <p
+                className={`mt-2 inline-flex rounded-full border px-3 py-1 text-sm font-semibold ${issuerStyles[cert.issuer] ?? "border-cyan/25 bg-cyan/10 text-cyan"}`}
+              >
                 {cert.issuer}
               </p>
             </div>
@@ -75,17 +87,14 @@ function CertificationModal({
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="drawer-close inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition"
+            className="drawer-close inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition z-[100]"
           >
             <X size={16} />
           </button>
         </div>
         <div className="flex max-h-[52vh] flex-wrap gap-2 overflow-y-auto pr-1">
           {cert.focus.map((item) => (
-            <TechChip
-              key={item}
-              className="px-3 py-1.5 text-sm font-medium"
-            >
+            <TechChip key={item} className="px-3 py-1.5 text-sm font-medium">
               {item}
             </TechChip>
           ))}
@@ -99,7 +108,11 @@ export function Achievements() {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
   return (
-    <Section id="achievements" eyebrow="Certifications" title="Cloud, AI, and engineering fundamentals.">
+    <Section
+      id="achievements"
+      eyebrow="Certifications"
+      title="Cloud, AI, and engineering fundamentals."
+    >
       <div className="mb-6 grid grid-cols-2 gap-3 sm:gap-5">
         {certifications.map((cert, index) => (
           <div key={cert.name} className="glass rounded-3xl p-4 sm:p-8">
@@ -117,18 +130,23 @@ export function Achievements() {
                 <h3 className="mt-1.5 break-words font-display text-[0.92rem] font-semibold leading-5 text-white sm:mt-2 sm:text-2xl sm:leading-8">
                   {cert.name}
                 </h3>
-                <p className={`mt-2 inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold sm:px-3 sm:py-1 sm:text-sm ${issuerStyles[cert.issuer] ?? "border-cyan/25 bg-cyan/10 text-cyan"}`}>
+                <p
+                  className={`mt-2 inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold sm:px-3 sm:py-1 sm:text-sm ${issuerStyles[cert.issuer] ?? "border-cyan/25 bg-cyan/10 text-cyan"}`}
+                >
                   {cert.issuer}
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {cert.focus.map((item, itemIndex) => (
-                <TechChip key={item} className={`px-2 py-0.5 text-[0.68rem] font-medium sm:px-3 sm:py-1.5 sm:text-sm ${
-                  itemIndex >= MOBILE_CERT_FOCUS_LIMIT
-                    ? "hidden sm:inline-flex"
-                    : ""
-                }`}>
+                <TechChip
+                  key={item}
+                  className={`px-2 py-0.5 text-[0.68rem] font-medium sm:px-3 sm:py-1.5 sm:text-sm ${
+                    itemIndex >= MOBILE_CERT_FOCUS_LIMIT
+                      ? "hidden sm:inline-flex"
+                      : ""
+                  }`}
+                >
                   {item}
                 </TechChip>
               ))}
@@ -155,7 +173,8 @@ export function Achievements() {
             className="h-11 w-11 bg-coral/10 text-coral sm:h-12 sm:w-12"
           />
           <p className="max-w-2xl text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-            Certificate-backed training focused on programming fundamentals, databases, algorithms, and problem solving.
+            Certificate-backed training focused on programming fundamentals,
+            databases, algorithms, and problem solving.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
@@ -186,16 +205,23 @@ export function Achievements() {
           ))}
         </div>
         <div className="mt-6 border-t border-white/10 pt-5 sm:mt-8 sm:pt-6">
-          <p className="accent-label mb-3 text-xs font-bold uppercase sm:mb-4 sm:text-sm">Additional Highlights</p>
+          <p className="accent-label mb-3 text-xs font-bold uppercase sm:mb-4 sm:text-sm">
+            Additional Highlights
+          </p>
         </div>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-2 md:gap-4">
           {extracurriculars.map((item, index) => {
             const Icon = highlightIcons[index] ?? Sparkles;
             return (
-            <div key={item} className="rounded-2xl border border-mint/20 bg-mint/[0.06] p-4 shadow-[0_0_28px_rgba(73,242,194,0.08)] sm:p-5">
-              <Icon className="mb-3 text-mint sm:mb-4" size={19} />
-              <p className="text-xs font-semibold leading-5 text-white sm:text-base sm:leading-7">{item}</p>
-            </div>
+              <div
+                key={item}
+                className="rounded-2xl border border-mint/20 bg-mint/[0.06] p-4 shadow-[0_0_28px_rgba(73,242,194,0.08)] sm:p-5"
+              >
+                <Icon className="mb-3 text-mint sm:mb-4" size={19} />
+                <p className="text-xs font-semibold leading-5 text-white sm:text-base sm:leading-7">
+                  {item}
+                </p>
+              </div>
             );
           })}
         </div>

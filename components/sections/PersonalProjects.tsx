@@ -72,7 +72,7 @@ function ProjectModal({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex justify-end"
+      className="fixed inset-0 z-[80] flex justify-end"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ function ProjectModal({
         onClick={onClose}
       />
       <motion.div
-        className="drawer-panel relative z-10 flex h-full w-full flex-col overflow-y-auto p-5 sm:p-8 sm:w-[480px]"
+        className="drawer-panel relative z-[90] flex h-full w-full flex-col overflow-y-auto p-5 sm:p-8 sm:w-[480px]"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
@@ -102,7 +102,7 @@ function ProjectModal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="drawer-close mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition"
+            className="drawer-close mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition z-[100]"
           >
             <X size={16} />
           </button>
@@ -202,17 +202,19 @@ function FeaturedCard({
             </p>
           </div>
           <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-            {(cardHighlights ?? project.highlights.slice(0, 4)).map((h, highlightIndex) => (
-              <li
-                key={h}
-              className={`gap-3 text-sm leading-6 text-slate-300 ${
-                  highlightIndex >= 1 ? "hidden sm:flex" : "flex"
-                }`}
-              >
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
-                {h}
-              </li>
-            ))}
+            {(cardHighlights ?? project.highlights.slice(0, 4)).map(
+              (h, highlightIndex) => (
+                <li
+                  key={h}
+                  className={`gap-3 text-sm leading-6 text-slate-300 ${
+                    highlightIndex >= 1 ? "hidden sm:flex" : "flex"
+                  }`}
+                >
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
+                  {h}
+                </li>
+              ),
+            )}
           </ul>
           <div className="flex items-center gap-3">
             <button
@@ -233,11 +235,7 @@ function FeaturedCard({
           </p>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((tech) => (
-              <TechChip
-                key={tech}
-              >
-                {tech}
-              </TechChip>
+              <TechChip key={tech}>{tech}</TechChip>
             ))}
           </div>
         </div>
@@ -277,10 +275,7 @@ function CompactCard({
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">
         {project.tech.slice(0, 5).map((tech) => (
-          <TechChip
-            key={tech}
-            className="px-2.5 py-0.5"
-          >
+          <TechChip key={tech} className="px-2.5 py-0.5">
             {tech}
           </TechChip>
         ))}
