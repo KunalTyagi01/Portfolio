@@ -103,15 +103,15 @@ export function Achievements() {
       <div className="mb-6 grid grid-cols-2 gap-3 sm:gap-5">
         {certifications.map((cert, index) => (
           <div key={cert.name} className="glass rounded-3xl p-4 sm:p-8">
-            <div className="mb-3 flex items-start gap-2.5 sm:mb-5 sm:gap-3">
-              <div className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-mint/10 text-mint sm:h-12 sm:w-12 sm:rounded-2xl">
+            <div className="relative mb-3 pr-7 sm:mb-5 sm:flex sm:items-start sm:gap-3 sm:pr-0">
+              <div className="absolute right-0 top-0 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-mint/10 text-mint sm:static sm:mt-0.5 sm:h-12 sm:w-12 sm:rounded-2xl">
                 <Award size={17} className="sm:h-[21px] sm:w-[21px]" />
               </div>
-              <div>
-                <p className="accent-label text-[0.68rem] font-bold uppercase sm:text-sm">
+              <div className="min-w-0 flex-1">
+                <p className="accent-label text-[0.62rem] font-bold uppercase leading-4 ![letter-spacing:0.12em] sm:text-sm sm:![letter-spacing:0.28em]">
                   {index === 0 ? "Featured Certification" : "Certification"}
                 </p>
-                <h3 className="mt-1.5 font-display text-base font-semibold leading-6 text-white sm:mt-2 sm:text-2xl sm:leading-8">
+                <h3 className="mt-1.5 break-words font-display text-[0.92rem] font-semibold leading-5 text-white sm:mt-2 sm:text-2xl sm:leading-8">
                   {cert.name}
                 </h3>
                 <p className={`mt-2 inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold sm:px-3 sm:py-1 sm:text-sm ${issuerStyles[cert.issuer] ?? "border-cyan/25 bg-cyan/10 text-cyan"}`}>

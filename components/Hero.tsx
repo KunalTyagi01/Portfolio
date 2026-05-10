@@ -35,109 +35,114 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="section-shell relative min-h-screen scroll-mt-24 pt-20 sm:pt-24 md:pt-20"
+      className="section-shell relative min-h-screen scroll-mt-24 pt-16 sm:pt-24 md:pt-20"
     >
-      <div className="grid min-h-[calc(100vh-10rem)] items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="grid min-h-[calc(100vh-7rem)] items-center gap-12 sm:min-h-[calc(100vh-10rem)] lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div
           className="lg:-mt-56"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="hero-chip mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold">
-            <Sparkles size={16} />
-            Available for Full-Stack, Frontend, Backend, and Product engineering
-            work
+          <div className="hero-chip mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold sm:mb-6 sm:px-4 sm:py-2 sm:text-sm">
+            <Sparkles size={14} className="sm:h-4 sm:w-4" />
+            <span className="sm:hidden">
+              Available for Full-Stack, Frontend, Backend
+            </span>
+            <span className="hidden sm:inline">
+              Available for Full-Stack, Frontend, Backend, and Product
+              engineering work
+            </span>
           </div>
-          <h1 className="text-balance font-display text-4xl font-semibold leading-[1.04] text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-balance font-display text-[2.35rem] font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
             {profile.name}
-            <span className="gradient-text block text-5xl sm:text-6xl lg:text-7xl font-bold">
+            <span className="gradient-text block text-[2.85rem] font-bold sm:text-6xl lg:text-7xl">
               {profile.title}
             </span>
           </h1>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-display text-sm font-semibold uppercase tracking-[0.22em]">
+          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-display text-xs font-semibold uppercase tracking-[0.18em] sm:mt-3 sm:gap-x-4 sm:gap-y-2 sm:text-sm sm:tracking-[0.22em]">
             <span className="text-slate-400">Calsoft Pvt Ltd</span>
             <span className="gradient-number">Development Engineer</span>
             <span className="text-slate-400">,</span>
             <span className="text-slate-400">Bengaluru</span>
           </div>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-4 max-w-2xl text-[0.94rem] leading-6 text-slate-300 sm:mt-6 sm:text-lg sm:leading-8">
             {profile.intro}
           </p>
-          <div className="mt-6 flex items-center gap-6">
+          <div className="mt-5 flex items-center gap-5 sm:mt-6 sm:gap-6">
             <div className="text-center">
-              <p className="gradient-number font-display text-2xl font-bold">
+              <p className="gradient-number font-display text-xl font-bold sm:text-2xl">
                 2.3
               </p>
-              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-widest text-slate-400 sm:text-[10px]">
                 Years Exp.
               </p>
             </div>
             <div
               aria-hidden
-              className="h-10 w-px"
+              className="h-8 w-px sm:h-10"
               style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
             />
             <div className="text-center">
-              <p className="gradient-number font-display text-2xl font-bold">
+              <p className="gradient-number font-display text-xl font-bold sm:text-2xl">
                 8.01
               </p>
-              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-widest text-slate-400 sm:text-[10px]">
                 CGPA
               </p>
             </div>
             <div
               aria-hidden
-              className="h-10 w-px"
+              className="h-8 w-px sm:h-10"
               style={{ backgroundColor: "rgba(100, 116, 139, 0.55)" }}
             />
             <div className="text-center">
-              <p className="gradient-number font-display text-2xl font-bold">
+              <p className="gradient-number font-display text-xl font-bold sm:text-2xl">
                 10+
               </p>
-              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-widest text-slate-400 sm:text-[10px]">
                 Projects
               </p>
             </div>
           </div>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-row sm:gap-4">
             <a
               href="#projects"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-mint px-6 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-mint px-4 py-2.5 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white sm:px-6 sm:py-3 sm:text-base"
             >
-              View Projects <ArrowDown size={18} />
+              Projects{" "}
+              <ArrowDown size={16} className="sm:h-[18px] sm:w-[18px]" />
             </a>
             <a
-              href="#contact"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan hover:text-cyan"
+              href="#contact-form-start"
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan hover:text-cyan sm:px-6 sm:py-3 sm:text-base"
             >
-              Start a Conversation
+              Contact Now
+              <ArrowDown size={16} className="sm:h-[18px] sm:w-[18px]" />
             </a>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:mt-8 sm:gap-3">
             {socialLinks.map((item) => {
               const Icon = item.icon;
-              return (
-                item.label === "Email" ? (
-                  <button
-                    key={item.label}
-                    type="button"
-                    onClick={openContactModal}
-                    className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint"
-                    aria-label={item.label}
-                  >
-                    <Icon size={19} />
-                  </button>
-                ) : (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint"
-                    aria-label={item.label}
-                  >
-                    <Icon size={19} />
-                  </a>
-                )
+              return item.label === "Email" ? (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={openContactModal}
+                  className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint sm:h-11 sm:w-11"
+                  aria-label={item.label}
+                >
+                  <Icon size={17} className="sm:h-[19px] sm:w-[19px]" />
+                </button>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-mint hover:text-mint sm:h-11 sm:w-11"
+                  aria-label={item.label}
+                >
+                  <Icon size={17} className="sm:h-[19px] sm:w-[19px]" />
+                </a>
               );
             })}
           </div>

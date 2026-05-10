@@ -7,30 +7,35 @@ import { Section } from "./Section";
 
 export function About() {
   return (
-    <Section id="about" eyebrow="About" title="Product-minded engineering with systems depth.">
+    <Section
+      id="about"
+      eyebrow="About"
+      title="Product-minded engineering with systems depth."
+      compactMobile
+    >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="glass rounded-3xl p-6 sm:p-8">
-          <p className="text-lg leading-8 text-slate-300">{profile.summary}</p>
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="glass rounded-3xl p-5 sm:p-8">
+          <p className="text-sm leading-6 text-slate-300 sm:text-lg sm:leading-8">{profile.summary}</p>
+          <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:mt-8 sm:p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
               <div className="flex items-start gap-3">
-              <GraduationCap className="mt-1 text-mint" size={22} />
+              <GraduationCap className="mt-1 shrink-0 text-mint" size={19} />
               <div>
-                <p className="font-semibold text-white">Education</p>
-                <p className="mt-1 text-sm leading-6 text-slate-400">{profile.education}</p>
+                <p className="text-sm font-semibold text-white sm:text-base">Education</p>
+                <p className="mt-1 text-xs leading-5 text-slate-400 sm:text-sm sm:leading-6">{profile.education}</p>
               </div>
               </div>
-              <div className="plain-stat-panel min-w-32 rounded-2xl px-5 py-4 text-center">
-                <p className="gradient-number font-display text-4xl font-bold leading-none">8.01</p>
-                <p className="mt-1 text-xs font-bold uppercase tracking-[0.24em] text-slate-400">CGPA</p>
+              <div className="plain-stat-panel min-w-28 rounded-2xl px-4 py-3 text-center sm:min-w-32 sm:px-5 sm:py-4">
+                <p className="gradient-number font-display text-3xl font-bold leading-none sm:text-4xl">8.01</p>
+                <p className="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-slate-400 sm:text-xs sm:tracking-[0.24em]">CGPA</p>
               </div>
             </div>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:mt-6 sm:gap-3">
             {aboutHighlights.map((highlight) => (
-              <div key={highlight.label} className="rainbow-panel rounded-2xl p-4">
-                <p className="gradient-number font-display text-2xl font-bold">{highlight.value}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{highlight.label}</p>
+              <div key={highlight.label} className="rainbow-panel rounded-2xl p-3 sm:p-4">
+                <p className="gradient-number font-display text-xl font-bold sm:text-2xl">{highlight.value}</p>
+                <p className="mt-1 text-[0.68rem] leading-4 text-slate-400 sm:text-xs sm:leading-5">{highlight.label}</p>
               </div>
             ))}
           </div>

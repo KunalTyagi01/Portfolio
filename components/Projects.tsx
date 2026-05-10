@@ -110,30 +110,30 @@ function ProjectCard({
 
   return (
     <motion.article
-      className="glass flex h-full flex-col overflow-hidden rounded-3xl p-6"
+      className="glass flex h-full flex-col overflow-hidden rounded-3xl p-5 sm:p-6"
       initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55, delay: index * 0.06 }}
     >
-      <div className="mb-6 flex items-start justify-between gap-4">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan/10 text-cyan">
-          <Icon size={24} />
+      <div className="mb-5 flex items-start justify-between gap-4 sm:mb-6">
+        <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan/10 text-cyan sm:h-12 sm:w-12">
+          <Icon size={21} className="sm:h-6 sm:w-6" />
         </div>
         <span className="badge-accent rounded-full border px-3 py-1 text-xs font-semibold">
           Client Project
         </span>
       </div>
-      <p className="accent-label mb-2 text-sm font-bold uppercase">
+      <p className="accent-label mb-2 text-xs font-bold uppercase sm:text-sm">
         {project.role}
       </p>
-      <h3 className="font-display text-xl font-semibold sm:text-2xl text-white">
+      <h3 className="font-display text-lg font-semibold text-white sm:text-2xl">
         {project.name}
       </h3>
-      <p className="mt-4 text-sm leading-6 text-slate-400">
+      <p className="mt-3 text-sm leading-6 text-slate-400 sm:mt-4">
         {project.description}
       </p>
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2 sm:mt-6">
         {project.tech.map((tech, techIndex) => (
           <span
             key={tech}
@@ -155,7 +155,7 @@ function ProjectCard({
           </button>
         ) : null}
       </div>
-      <ul className="mt-6 space-y-3 border-t border-white/10 pt-5">
+      <ul className="mt-5 space-y-3 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
         {project.features.slice(0, MAX_BULLETS).map((feature) => (
           <li
             key={feature}
@@ -184,6 +184,77 @@ function ProjectCard({
   );
 }
 
+function MobileProjectList({
+  onOpen,
+}: Readonly<{ onOpen: (project: Project) => void }>) {
+  return (
+    <div className="grid gap-3 md:hidden">
+      {projects.map((project, index) => {
+        const Icon = project.icon;
+        return (
+          <motion.article
+            key={project.name}
+            className="glass rounded-3xl p-4"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: index * 0.05 }}
+          >
+            <div className="flex items-start gap-3">
+              <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-cyan/10 text-cyan">
+                <Icon size={20} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="mb-1 flex items-start justify-between gap-3">
+                  <p className="accent-label text-[0.62rem] font-bold uppercase ![letter-spacing:0.12em]">
+                    {project.role}
+                  </p>
+                  <span className="badge-accent shrink-0 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-semibold">
+                    Client
+                  </span>
+                </div>
+                <h3 className="font-display text-lg font-semibold leading-6 text-white">
+                  {project.name}
+                </h3>
+                <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-400">
+                  {project.description}
+                </p>
+              </div>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {project.tech.slice(0, 4).map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs text-slate-300"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.tech.length > 4 ? (
+                <span className="rounded-full border border-cyan/20 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan">
+                  +{project.tech.length - 4}
+                </span>
+              ) : null}
+            </div>
+            <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+              <p className="text-xs font-medium text-slate-400">
+                Private client case study
+              </p>
+              <button
+                type="button"
+                onClick={() => onOpen(project)}
+                className="inline-flex items-center gap-1 text-xs font-semibold text-cyan transition-colors hover:text-mint"
+              >
+                Details <ChevronRight size={12} />
+              </button>
+            </div>
+          </motion.article>
+        );
+      })}
+    </div>
+  );
+}
+
 export function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
 
@@ -193,7 +264,8 @@ export function Projects() {
       eyebrow="Projects"
       title="Premium product work, shaped into case studies."
     >
-      <div className="grid gap-5 lg:grid-cols-3">
+      <MobileProjectList onOpen={(project) => setSelected(project)} />
+      <div className="hidden gap-5 md:grid lg:grid-cols-3">
         {projects.map((project, index) => (
           <ProjectCard
             key={project.name}

@@ -8,6 +8,55 @@ import { personalProjects } from "@/data/portfolio";
 import { Section } from "./Section";
 
 type Project = (typeof personalProjects)[0];
+const PROFILE_GITHUB = "https://github.com/KunalTyagi01";
+
+function getProjectLinks(project: Project) {
+  const live = (project as Record<string, unknown>).live;
+  return {
+    github: project.github !== PROFILE_GITHUB ? project.github : null,
+    live: typeof live === "string" ? live : null,
+  };
+}
+
+function ProjectLinks({
+  project,
+  compact = false,
+}: Readonly<{ project: Project; compact?: boolean }>) {
+  const links = getProjectLinks(project);
+
+  if (links.github === null && links.live === null) return null;
+
+  const linkClass = compact
+    ? "focus-ring inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs font-semibold text-white transition hover:border-mint hover:text-mint"
+    : "focus-ring inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-mint hover:text-mint";
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {links.github !== null ? (
+        <a
+          href={links.github}
+          target="_blank"
+          rel="noreferrer"
+          onClick={(event) => event.stopPropagation()}
+          className={linkClass}
+        >
+          <FaGithub size={compact ? 12 : 16} /> GitHub
+        </a>
+      ) : null}
+      {links.live !== null ? (
+        <a
+          href={links.live}
+          target="_blank"
+          rel="noreferrer"
+          onClick={(event) => event.stopPropagation()}
+          className={linkClass}
+        >
+          <ExternalLink size={compact ? 11 : 14} /> Live Demo
+        </a>
+      ) : null}
+    </div>
+  );
+}
 
 function ProjectModal({
   project,
@@ -89,7 +138,7 @@ function ProjectModal({
           </ul>
         </div>
         <div className="mt-auto flex flex-wrap gap-3">
-          {project.github !== "https://github.com/KunalTyagi01" && (
+          {project.github !== PROFILE_GITHUB && (
             <a
               href={project.github}
               target="_blank"
@@ -144,7 +193,7 @@ function FeaturedCard({
             </span>
           </div>
           <div>
-            <h3 className="mb-2 font-display text-xl font-semibold text-white sm:text-3xl">
+            <h3 className="mb-2 font-display text-lg font-semibold text-white sm:text-3xl">
               {project.name}
             </h3>
             <p className="line-clamp-4 max-w-xl text-sm leading-6 text-slate-300 sm:line-clamp-none sm:text-base sm:leading-7">
@@ -174,17 +223,7 @@ function FeaturedCard({
             >
               View Details <ArrowRight size={18} />
             </button>
-            {project.github !== "https://github.com/KunalTyagi01" && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-mint hover:text-mint"
-              >
-                <FaGithub size={16} /> GitHub
-              </a>
-            )}
+            <ProjectLinks project={project} />
           </div>
         </div>
         <div className="hidden flex-col justify-start lg:flex">
@@ -230,7 +269,7 @@ function CompactCard({
           Personal
         </span>
       </div>
-      <h3 className="mb-2 font-display text-xl font-semibold text-white">
+      <h3 className="mb-2 font-display text-lg font-semibold text-white md:text-xl">
         {project.name}
       </h3>
       <p className="text-sm leading-6 text-slate-400 line-clamp-3">
@@ -263,17 +302,7 @@ function CompactCard({
         <span className="text-xs font-semibold text-cyan transition-colors hover:text-mint">
           View details →
         </span>
-        {typeof (project as Record<string, unknown>).live === "string" && (
-          <a
-            href={String((project as Record<string, unknown>).live)}
-            target="_blank"
-            rel="noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="focus-ring inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs font-semibold text-white transition hover:border-mint hover:text-mint"
-          >
-            <ExternalLink size={11} /> Live Demo
-          </a>
-        )}
+        <ProjectLinks project={project} compact />
       </div>
     </motion.article>
   );
